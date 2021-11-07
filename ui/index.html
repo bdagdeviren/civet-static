@@ -1,0 +1,102 @@
+<html data-theme="dark">
+  <head>
+    <script src="js/alpine.js" defer></script>
+    <link rel="stylesheet" href="css/pico.min.css" />
+	<link rel="stylesheet" href="css/pico-bootstrap-grid.min.css" />
+	<link rel="stylesheet" href="css/index.css" />
+  </head>
+
+  <body style="padding: 30px;padding-top:15px;overflow:hidden;">
+    <nav>
+	  <ul>
+		<li><strong style="font-size: 36px;">K8CONFIGURE</strong></li>
+	  </ul>
+	  <ul>
+		<li><img src="images/kubeblue-48.ico" onClick="alert('test')" style="cursor: pointer;"></li>
+	  </ul>
+	</nav>
+	<details open>
+	  <summary style="padding-bottom:15px;color:#bbc6ce;">Nodes</summary>
+	  <div
+		x-data="{
+		 search: '',
+
+		  items: [
+			{
+			 'name':'master',
+			},				 
+			{
+			 'name':'node1',
+			},				 
+			{
+			 'name':'node2',
+			}
+		  ],
+
+		  get filteredItems() {
+			  return this.items
+		  }
+		}"
+	  >
+		<div class="row row-example">
+		    <template x-for="item in filteredItems" :key="item.name">
+				<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+					<a class="a" @click="alert(JSON.stringify(item))">
+						<div class="col-example">
+							<div class="center" x-text="item.name"></div>
+						</div>
+					</a>
+				</div>
+			</template>
+		</div>
+      </div>
+	</details>
+	<details open>
+		<summary style="padding-bottom:15px;color:#bbc6ce;">Services</summary>
+		<div
+			x-data="{
+			 search: '',
+
+			  items: [
+				{
+				 'name':'portainer',
+				 'status': 'Success',
+				 'logs': 'Deployment Successfull!'
+				},				 
+				{
+				 'name':'grafana',
+				 'status': 'Failed',
+				 'logs': 'Deployment Failed!'
+				},				 
+				{
+				 'name':'prometheus',
+				 'status': 'Failed',
+				 'logs': 'Deployment Failed!'
+				},				 
+				{
+				 'name':'calico',
+				 'status': 'Success',
+				 'logs': 'Deployment Successfull!'
+				}
+			  ],
+
+			  get filteredItems() {
+				  return this.items
+			  }
+			}"
+		>
+			<div class="row row-example">
+				<template x-for="item in filteredItems" :key="item.name">
+					<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+						<a class="a" @click="alert(JSON.stringify(item))">
+							<div class="col-example" :class="(item.status === 'Success') ? ('green') : ((item.status === 'Failed') ? ('red') : ('gray')) ">
+								<div class="center" x-text="item.name"></div>
+							</div>
+						</a>
+					</div>
+				</template>
+			</div>
+		</div>
+	</details>
+  </body>
+</html>

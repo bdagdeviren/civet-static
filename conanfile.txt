@@ -1,0 +1,7 @@
+[requires]
+civetweb/1.14
+cjson/1.7.14
+log.c/cci.20200620
+
+[generators]
+cmake
