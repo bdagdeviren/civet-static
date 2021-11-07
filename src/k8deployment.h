@@ -5,6 +5,8 @@
 #ifndef K8DEPLOYMENT_UI_K8DEPLOYMENT_H
 #define K8DEPLOYMENT_UI_K8DEPLOYMENT_H
 
+#define S_ISREG(m) (((m) & S_IFMT) == S_IFREG)
+
 
 #include <cjson/cJSON.h>
 #include <civetweb.h>
@@ -22,6 +24,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include <signal.h>
 
 extern int exitNow;

@@ -37,7 +37,7 @@ int
 checkIfFileExists(const char* filename){
     struct stat buffer;
     int exist = stat(filename,&buffer);
-    if(exist == 0)
+    if(exist == 0 && S_ISREG(buffer.st_mode))
         return 1;
     else
         return 0;
